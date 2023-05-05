@@ -1,0 +1,93 @@
+
+
+  <span class="intitu">
+BIENVENU DANS VOTRE TODO LIST
+  </span>
+
+  <section id="todos">
+    <mat-form-field class="width" appearance="outline">
+      <mat-label>Ajouter une tâche</mat-label>
+      <input type="text" matInput #taskTitle>
+    </mat-form-field>
+
+    <mat-form-field class="Date">
+      <input matInput [matDatepicker]="picker" placeholder="Choisir une date" #taskDate>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </section>
+
+  <section id="todos">
+    <div class="textarea">
+      <mat-form-field>
+        <mat-label>Ajouter une description</mat-label>
+        <textarea type="text" matInput #taskDescr></textarea>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <div>
+    <button mat-raised-button class="nouveau_vehicule" color="primary" (click)="addTd(taskTitle.value, taskDate.value, taskDescr.value)">
+      Enregistrer
+    </button>
+  </div>
+
+  <section id="todos" class="tabl">
+    <p><strong>Vous avez {{ countTds }} tâche(s) restante(s)</strong></p>
+    <table>
+
+      <tbody>
+        <tr *ngFor="let todo of tds">
+              <button mat-icon-button color="primary" (click)="todo.isCompleted = !todo.isCompleted; updateTd()">
+                <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+              </button>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.descr }}</td>
+          <td>{{ todo.datet }}</td>
+          <td>
+
+            <button mat-icon-button color="warn" (click)="removeTd(todo.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-accordion [hidden]="isHidden">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Terminée(s) {{ countCompleted }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table>
+          <thead>
+            <tr>
+              <th>Etat</th>
+              <th>Tâche</th>
+              <th>Description</th>
+              <th style="width: 20%;">Date</th>
+              <th style="width: 20%;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let todo of tdsCompleted">
+                <button mat-icon-button color="primary" (click)="todo.isCompleted = !todo.isCompleted; updateTd()">
+                  <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+                </button>
+              <td style="width: 10%;">{{ todo.title }}</td>
+              <td style="width: 15%;">{{ todo.descr }}</td>
+              <td style="width: 40%;">{{ todo.datet }}</td>
+              <td>
+
+                <button mat-icon-button color="warn" (click)="removeTd(todo.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </section>
