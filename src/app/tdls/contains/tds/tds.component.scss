@@ -40,3 +40,47 @@ width: 500px;
   top: 50px;
 
 }
+
+/* Style pour la table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style pour les cellules du tableau */
+td, th {
+  padding: 10px;
+  text-align: left;
+  border: none; /* Modification de la propriété border */
+}
+
+/* Style pour la première ligne du tableau (les en-têtes) */
+th {
+  background-color: #f2f2f2;
+}
+
+/* Style pour les boutons dans les cellules */
+button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style pour les icônes dans les boutons */
+mat-icon {
+  font-size: 20px;
+}
+
+/* Style pour les tâches terminées */
+tr.completed {
+  color: #888;
+  text-decoration: line-through;
+}
+
+
+.completed {
+  text-decoration: line-through;
+  }

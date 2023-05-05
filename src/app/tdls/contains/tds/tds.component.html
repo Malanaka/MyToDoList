@@ -35,17 +35,17 @@ BIENVENU DANS VOTRE TODO LIST
   <section id="todos" class="tabl">
     <p><strong>Vous avez {{ countTds }} tâche(s) restante(s)</strong></p>
     <table>
-
       <tbody>
         <tr *ngFor="let todo of tds">
-              <button mat-icon-button color="primary" (click)="todo.isCompleted = !todo.isCompleted; updateTd()">
-                <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
-              </button>
+          <td>
+            <button mat-icon-button color="primary" (click)="todo.isCompleted = !todo.isCompleted; updateTd()">
+              <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+            </button>
+          </td>
           <td>{{ todo.title }}</td>
           <td>{{ todo.descr }}</td>
           <td>{{ todo.datet }}</td>
           <td>
-
             <button mat-icon-button color="warn" (click)="removeTd(todo.id)">
               <mat-icon>delete</mat-icon>
             </button>
@@ -53,7 +53,6 @@ BIENVENU DANS VOTRE TODO LIST
         </tr>
       </tbody>
     </table>
-
     <mat-accordion [hidden]="isHidden">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -67,20 +66,21 @@ BIENVENU DANS VOTRE TODO LIST
               <th>Etat</th>
               <th>Tâche</th>
               <th>Description</th>
-              <th style="width: 20%;">Date</th>
-              <th style="width: 20%;">Action</th>
+              <th>Date</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let todo of tdsCompleted">
+              <td>
                 <button mat-icon-button color="primary" (click)="todo.isCompleted = !todo.isCompleted; updateTd()">
                   <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
                 </button>
-              <td style="width: 10%;">{{ todo.title }}</td>
-              <td style="width: 15%;">{{ todo.descr }}</td>
-              <td style="width: 30%;">{{ todo.datet }}</td>
+              </td>
+              <td [ngClass]="{'completed': todo.isCompleted}">{{ todo.title }}</td>
+              <td>{{ todo.descr }}</td>
+              <td>{{ todo.datet }}</td>
               <td>
-
                 <button mat-icon-button color="warn" (click)="removeTd(todo.id)">
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -88,6 +88,8 @@ BIENVENU DANS VOTRE TODO LIST
             </tr>
           </tbody>
         </table>
-        </mat-expansion-panel>
+      </mat-expansion-panel>
     </mat-accordion>
   </section>
+
+
